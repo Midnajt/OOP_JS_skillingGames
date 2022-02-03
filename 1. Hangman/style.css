@@ -34,7 +34,7 @@ html {
 
 #output .step {
     width: calc(100% / 8);
-    border-right:3px #fff solid;
+    margin: 0 3px;
 }
 
 #output .step {

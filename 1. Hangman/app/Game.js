@@ -1,23 +1,25 @@
 import {Quote} from './Quote.js';
 
 export class Game {
+    currentStep = 0;
+    lastStep = 7;
 
     quotes = [
         {
-          text: "pan tadeusz",
-          category: "Utwór literacki",
+          text: "harry potter",
+          category: "A literary work ",
         },
         {
-          text: "ogniem i mieczem",
-          category: "Film",
+          text: "the lord of the ring",
+          category: "A movie",
         },
         {
-          text: "w pustyni i w puszczy",
-          category: "Film",
+          text: "matrix",
+          category: "A movie",
         },
         {
-          text: "dzieci z bullerbyn",
-          category: "Utwór literacki",
+          text: "a shadow of the wind",
+          category: "A literary work ",
         },
       ];
 
@@ -39,8 +41,15 @@ export class Game {
 
     guess(letter,event){
         event.target.disabled = true;
-        this.quote.guess(letter)
-        this.drawQuote();
+        if(this.quote.guess(letter)){
+            this.drawQuote();
+        } else {
+            this.currentStep++;
+            document.querySelectorAll('.step')[this.currentStep].style.opacity = 1;
+            if(this.currentStep == this.lastStep){
+                this.loosing();
+            }
+        }
     }
 
     drawLetters(){
@@ -56,11 +65,28 @@ export class Game {
     drawQuote(){
         const content = this.quote.getContent();
         this.wordWrapper.innerHTML = content;
+        if(!content.includes('_')){
+            this.wining();
+        }
     }
 
     start(){
+        document.querySelectorAll('.step')[this.currentStep].style.opacity = 1;
         this.drawLetters();
         this.drawQuote();
+    }
+
+    wining(){
+        this.wordWrapper.innerHTML = 'CONGRATULATIONS! You have won.';
+        this.lettersWrapper.innerHTML = '';
+        setTimeout(() => {
+            location.reload();
+        }, 3000);
+    }
+
+    loosing(){
+        this.wordWrapper.innerHTML = 'Unfortunately! Mission failed.';
+        this.lettersWrapper.innerHTML = '';
     }
 }
 
@@ -70,3 +96,5 @@ const game = new Game({
     wordWrapper: document.getElementById('word'),
     outputWrapper: document.getElementById('output')
 });
+
+game.start();
