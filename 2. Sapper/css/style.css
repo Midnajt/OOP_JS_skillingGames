@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #c0c0c0;
+    --primary-color--dark: #808080;
+    --alarm-color: #f80000;
+}
+
+@font-face {
+    font-family: DIGITALDREAM;
+    src: url('../assets/DIGITALDREAM.ttf');
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', 'arial', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.game {
+    margin: 2rem auto 0 auto;
+    padding: 1.5rem;
+    max-width: 35.6rem;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    box-shadow: 0 0 10px black;
+}
+
+.game__board {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: .8rem;
+}
+
+.header__counter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: .5rem;
+    min-width: 8rem;
+    color: var(--alarm-color);
+    font-family: 'DIGITALDREAM', 'arial', sans-serif;
+    font-size: 3.2rem;
+    background-color: #252525;
+}
+
+.header__reset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    background-color: var(--primary-color);
+}
+
+.header__button {
+    width: 4.8rem;
+    height: 4.8rem;
+    cursor: pointer;
+}
+
+.panel__header {
+    text-align: center;
+    font-size: 2.6rem;
+}
+
+.panel__buttons {
+    display: flex;
+}
+
+.button {
+    flex: 1;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    cursor: pointer;
+    font-size: 2.4rem;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.6);
+}
+
+.modal__content {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: whitesmoke;
+}
+
+.modal__text {
+    font-size: 4.8rem;
+    text-align: center;
+}
+
+.modal__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: #252525;
+    font-size: 2.4rem;
+    border: .3rem solid #252525;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: background-color .1s ease-in, color .1s ease-in, border-color .1s ease-in;
+}
+
+.modal__button:hover {
+    background-color: #252525;
+    color: whitesmoke;
+    border-color: black;
+}
+
+.border {
+    border: .3rem solid;
+}
+
+.border--convex {
+    border-color: var(--primary-color--dark) #fff #fff var(--primary-color--dark);
+}
+
+.border--concave {
+    border-color: #fff var(--primary-color--dark) var(--primary-color--dark) #fff;
+}
+
+.cell {
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+}
+
+.hide {
+    visibility: hidden;
+}
