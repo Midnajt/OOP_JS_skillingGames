@@ -4,6 +4,16 @@
     --primary-color: #c0c0c0;
     --primary-color--dark: #808080;
     --alarm-color: #f80000;
+
+    --cell-size: 4rem;
+    --game-padding: 1.5rem;
+    --border-width: 0.3rem;
+    --cells-in-row: 8;
+
+    --game-max-width: calc(
+        var(--cell-size) * var(--cells-in-row) + calc(2 * var(--game-padding)) +
+          calc(2 * var(--border-width))
+      );
 }
 
 @font-face {
@@ -24,8 +34,8 @@ html {
 
 .game {
     margin: 2rem auto 0 auto;
-    padding: 1.5rem;
-    max-width: 35.6rem;
+    padding: var(--game-padding);
+    max-width: var(--game-max-width);
     background-color: var(--primary-color);
     border-radius: 4px;
     box-shadow: 0 0 10px black;
@@ -133,7 +143,7 @@ html {
 }
 
 .border {
-    border: .3rem solid;
+    border: var(--border-width) solid;
 }
 
 .border--convex {
@@ -144,10 +154,22 @@ html {
     border-color: #fff var(--primary-color--dark) var(--primary-color--dark) #fff;
 }
 
+.border--revealed {
+    border-width: .1rem;
+    border-color: var(--primary-color--dark);
+}
+
 .cell {
-    width: 4rem;
-    height: 4rem;
+    width: var(--cell-size);
+    height: var(--cell-size);
     cursor: pointer;
+    background-size: 2rem;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cell--is-flag {
+    background-image: url('../assets/flag.svg');
 }
 
 .hide {
