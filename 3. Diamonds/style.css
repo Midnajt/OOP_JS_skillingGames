@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
-
 :root {
     --black: #252525;
+    --scale-value: 1;
 }
 
 * {
@@ -33,7 +32,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%) scale(1);
+    transform: translate(-50%,-50%) scale(var(--scale-value));
     transform-origin: center;
     width: 640px;
     height: 480px;
