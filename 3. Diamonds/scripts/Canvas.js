@@ -1,4 +1,6 @@
 import { Common } from './Common.js';
+import { media } from './Media.js';
+import { game } from './Game.js';
 
 const GAME_SCREEN_ID = 'js-game-screen';
 
@@ -17,6 +19,29 @@ class Canvas extends Common {
         this.context.canvas.height = CANVAS_HEIGHT;
         this.context.font = '20px arial whitesmoke';
         this.context.fillStyle = 'white';
+    }
+
+    drawGameOnCanvas(gameState){
+        this.drawBackground();
+        this.drawPointsToWin(gameState.pointsToWin);
+        this.drawPlayersPoints(gameState.getPlayerPoints());
+        this.drawLeftMovement(gameState.getLeftMovement());
+    }
+
+    drawBackground(){
+        this.context.drawImage(media.backgroundImage, 0, 0);
+    }
+
+    drawPointsToWin(pointsToWin){
+        this.context.fillText(`${pointsToWin}`, 520, 92);
+    }
+
+    drawPlayersPoints(playerPoints){
+        this.context.fillText(`${playerPoints}`, 520, 163);
+    }
+
+    drawLeftMovement(leftMovement){
+        this.context.fillText(`${leftMovement}`, 520, 234);
     }
 }
 

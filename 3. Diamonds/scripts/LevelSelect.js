@@ -1,6 +1,8 @@
 import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.js';
 import { canvas } from './Canvas.js';
-import { loader, DATALOADED_EVENT_NAME } from './Loader.js'
+import { loader, DATALOADED_EVENT_NAME } from './Loader.js';
+import { game } from './Game.js';
+import { media } from './Media.js';
 
 const gameLevels = [
     {
@@ -41,10 +43,8 @@ class LevelSelect extends Common {
     }
 
     loadLevel(level){
-        const background = loader.loadImage('images/levelBackground.png');
-        window.addEventListener(DATALOADED_EVENT_NAME, () => {
-            console.log(`załadowane wszystkie media`);
-        })
+        media.backgroundImage = loader.loadImage('images/levelBackground.png');
+        window.addEventListener(DATALOADED_EVENT_NAME, () => game.playLevel(level))
     }
 }
 
