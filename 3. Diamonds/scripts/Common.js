@@ -15,7 +15,7 @@ export class Common {
         return element;
     }
 
-    changeVisibilityScreen(element, mdoe){
+    changeVisibilityScreen(element, mode){
         mode === VISIBLE_SCREEN
             ? element.classList.remove(HIDDEN_CLASS)
             : element.classList.add(HIDDEN_CLASS)

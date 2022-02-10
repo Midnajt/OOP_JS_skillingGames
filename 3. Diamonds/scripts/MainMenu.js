@@ -1,4 +1,5 @@
 import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.js';
+import { levelSelect } from './LevelSelect.js';
 
 const SCALE_PROPERTY = '--scale-value';
 const START_SCREEN_GAME_BUTTON_ID = 'js-start-game';
@@ -22,11 +23,13 @@ class MainMenu extends Common {
     };
 
     showLevelScreen(){
-        console.log('wybór poziomu btn');
+        this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
+        this.changeVisibilityScreen(levelSelect.element, VISIBLE_SCREEN);
+        console.log('showLevelScreen()');
     }
 
     showSettingsScreen(){
-        console.log('ustawienia gry btn');
+        console.log('showSettingsScreen()');
     }
 
     resizeGameWindow(){
