@@ -1,4 +1,6 @@
-import { Common, HIDDEN_SCREEN } from './Common.js';
+import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.js';
+import { canvas } from './Canvas.js';
+import { loader, DATALOADED_EVENT_NAME } from './Loader.js'
 
 const gameLevels = [
     {
@@ -34,7 +36,15 @@ class LevelSelect extends Common {
 
     buttonOnClickHandler(event){
         this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
-        // TODO pokaż planszę z grą
+        this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
+        this.loadLevel(event.currentTarget.value);
+    }
+
+    loadLevel(level){
+        const background = loader.loadImage('images/levelBackground.png');
+        window.addEventListener(DATALOADED_EVENT_NAME, () => {
+            console.log(`załadowane wszystkie media`);
+        })
     }
 }
 
