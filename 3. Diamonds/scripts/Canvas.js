@@ -1,6 +1,5 @@
 import { Common } from './Common.js';
 import { media } from './Media.js';
-import { game } from './Game.js';
 
 const GAME_SCREEN_ID = 'js-game-screen';
 
