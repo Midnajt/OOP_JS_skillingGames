@@ -1,12 +1,9 @@
 import { Common, VISIBLE_SCREEN } from './Common.js';
 import { DATALOADED_EVENT_NAME, loader } from './Loader.js';
-import { gameLevels } from './GameLevels.js';
+import { gameLevels } from './gameLevels.js';
 import { canvas } from './Canvas.js';
 import { Diamond } from './Diamond.js';
 import { media } from './Media.js';
-
-export const GAME_BOARD_X_OFFSET = 40;
-export const GAME_BOARD_Y_OFFSET = -5;
 
 const gameState = {
     pointsToWin: 7000,
