@@ -9,6 +9,7 @@ import { DIAMOND_SIZE } from './Diamond.js';
 
 const DIAMONDS_ARRAY_WIDTH = 8;
 const DIAMONDS_ARRAY_HEIGHT = DIAMONDS_ARRAY_WIDTH + 1; //invisibile first row at the top
+const LAST_ELEMENT_DIMAONDS_ARRAY = DIAMONDS_ARRAY_WIDTH * DIAMONDS_ARRAY_HEIGHT - 1;
 const SWAPING_SPEED = 8;
 
 class Game extends Common {
@@ -28,6 +29,7 @@ class Game extends Common {
     animate(){
         this.handleMouseState();
         this.handleMouseClick();
+        this.findMatches();
         this.moveDiamonds();
         this.revertSwap();
         canvas.drawGameOnCanvas(this.gameState);
@@ -86,6 +88,39 @@ class Game extends Common {
         }
 
         mouseController.clicked = false;
+    }
+
+    // TODO EMPTY_BLOCK not defined
+    findMatches(){
+        this.gameState.getGameBoard().forEach((diamond, index, diamonds) => {
+            if(diamond.kind === EMPTY_BLOCK || index === LAST_ELEMENT_DIMAONDS_ARRAY){
+                return;
+            }
+
+            if(
+                diamonds[index-1].kind === diamond.kind
+                && diamonds[index+1].kind === diamond.kind
+            ){
+                if(Math.floor((index-1) / DIAMONDS_ARRAY_WIDTH) === Math.floor((index + 1) / DIAMONDS_ARRAY_WIDTH)){
+                    for(let i = -1; i <= 1; i++){
+                        diamonds[index + i].match++;
+                    }
+                }
+            }
+
+            if(
+                index >= DIAMONDS_ARRAY_WIDTH
+                && index < LAST_ELEMENT_DIMAONDS_ARRAY - DIAMONDS_ARRAY_WIDTH + 1
+                && diamonds[index - DIAMONDS_ARRAY_WIDTH].kind === diamonds.kind
+                && diamonds[index + DIAMONDS_ARRAY_WIDTH].kind === diamonds.kind
+            ){
+                if((index - DIAMONDS_ARRAY_WIDTH) % DIAMONDS_ARRAY_WIDTH === (index + DIAMONDS_ARRAY_HEIGHT) % DIAMONDS_ARRAY_WIDTH){
+                    for(let i = -DIAMONDS_ARRAY_WIDTH; i <= DIAMONDS_ARRAY_WIDTH; i+= DIAMONDS_ARRAY_WIDTH){
+                        diamonds[index + i].match++;
+                    }
+                }
+            }
+        })
     }
 
     swapDiamonds(){
