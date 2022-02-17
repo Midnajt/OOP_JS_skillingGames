@@ -2,10 +2,11 @@ import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.js';
 import { levelSelect } from './LevelSelect.js';
 import { CANVAS_WIDTH, CANVAS_HEIGHT } from './Canvas.js';
 
-const SCALE_PROPERTY = '--scale-value';
 const START_SCREEN_GAME_BUTTON_ID = 'js-start-game';
 const START_SCREEN_ID = 'js-start-screen';
 const START_SCREEN_SETTINGS_BUTTON_ID = 'js-settings-button';
+
+export const SCALE_PROPERTY = '--scale-value';
 
 class MainMenu extends Common {
     constructor(){

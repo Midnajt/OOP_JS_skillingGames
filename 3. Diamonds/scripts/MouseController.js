@@ -1,21 +1,17 @@
-// ! those class isnt attached anywhere yet
 import { canvas } from './Canvas.js';
 import { SCALE_PROPERTY } from './MainMenu.js';
 
 class MouseController {
-    contructor(){
+    constructor(){
         this.x = 0;
         this.y = 0;
-        this.state = 0;
-        this.clicked = false;
-        console.log('klik')
-        this.text = 'Marcin';
+		this.state = 0;
+		this.clicked = false;
 
         canvas.element.addEventListener('mousedown', event => this.mouseDown(event));
     }
 
     mouseDown(event){
-        console.log('mouseDown()');
         event.preventDefault();
 
         const offset = canvas.element.getBoundingClientRect();
