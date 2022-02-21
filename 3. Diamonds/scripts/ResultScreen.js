@@ -1,4 +1,6 @@
 import { Common, VISIBLE_SCREEN, HIDDEN_SCREEN } from './Common.js';
+import { canvas } from './Canvas.js';
+import { mainMenu } from './MainMenu.js';
 
 const RESULT_SCREEN_BACK_BUTTON_ID = 'js-back-to-levels';
 const RESULT_SCREEN_END_SCREEN_ID = 'js-end-screen';
@@ -22,9 +24,7 @@ class ResultScreen extends Common {
         const backButtonElement = this.bindToElement(RESULT_SCREEN_BACK_BUTTON_ID);
         const restartButtonElement = this.bindToElement(RESULT_SCREEN_RESTART_LEVEL_BUTTON_ID);
 
-        backButtonElement.addEventListener('click', () => {
-            console.log('back click');
-        })
+        backButtonElement.addEventListener('click', () => this.backButtonClick())
 
         restartButtonElement.addEventListener('click', () => {
             console.log('restart click');
@@ -42,6 +42,12 @@ class ResultScreen extends Common {
         this.resultTextElement.textContent = isGameWin ? 'WYGRAŁEŚ !' : 'PRZEGRAŁEŚ !';
         this.userPointsElement.textContent = String(playerPoints);
         this.highScoresElement.textContent = 7000;
+    }
+
+    backButtonClick(){
+        this.changeVisibilityScreen(canvas.element, HIDDEN_SCREEN);
+        this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
+        mainMenu.showLevelScreen();
     }
 }
 
