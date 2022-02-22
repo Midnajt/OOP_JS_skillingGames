@@ -1,6 +1,7 @@
 import { Common, VISIBLE_SCREEN, HIDDEN_SCREEN } from './Common.js';
 import { canvas } from './Canvas.js';
 import { mainMenu } from './MainMenu.js';
+import { userData } from './UserData.js';
 
 const RESULT_SCREEN_BACK_BUTTON_ID = 'js-back-to-levels';
 const RESULT_SCREEN_END_SCREEN_ID = 'js-end-screen';
@@ -41,7 +42,7 @@ class ResultScreen extends Common {
         this.changeVisibilityScreen(this.element, VISIBLE_SCREEN);
         this.resultTextElement.textContent = isGameWin ? 'WYGRAŁEŚ !' : 'PRZEGRAŁEŚ !';
         this.userPointsElement.textContent = String(playerPoints);
-        this.highScoresElement.textContent = 7000;
+        this.highScoresElement.textContent = String(userData.getHighScores(level));
     }
 
     backButtonClick(){

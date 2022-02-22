@@ -12,6 +12,7 @@ import { GameState } from './GameState.js';
 import { mouseController } from './MouseController.js';
 import { DIAMOND_SIZE, NUMBER_OF_DIAMONDS_TYPES } from './Diamond.js';
 import { resultScreen } from './ResultScreen.js';
+import { userData } from './UserData.js';
 
 const DIAMONDS_ARRAY_WIDTH = 8;
 const DIAMONDS_ARRAY_HEIGHT = DIAMONDS_ARRAY_WIDTH + 1; //invisibile first row at the top
@@ -236,14 +237,19 @@ class Game extends Common {
     checkEndOfGame(){
         if(!this.gameState.getLeftMovement() && !this.gameState.getIsMoving() && !this.gameState.getIsSwaping()){
             const isPlayerWinner = this.gameState.isPlayerWinner();
+			const currentLevel = Number(this.gameState.level);
 
-            if(isPlayerWinner && gameLevels[this.gameState.level]){
-                console.log('kolejny level odblokowany');
+            if(isPlayerWinner && gameLevels[currentLevel]){
+                if(!userData.checkAvailabilityLevel(currentLevel + 1)){
+					userData.addNewLevel(currentLevel +1);
+				}
             }
 
-            console.log('jeżeli gracz więcej punktów to aktualizacja high scores');
+			if(userData.getHighScores(currentLevel) < this.gameState.getPlayerPoints()){
+				userData.setHighScore(currentLevel, this.gameState.getPlayerPoints());
+			}
 
-            resultScreen.viewResultScreen(isPlayerWinner, this.gameState.getPlayerPoints(), this.gameState.level);
+            resultScreen.viewResultScreen(isPlayerWinner, this.gameState.getPlayerPoints(), currentLevel);
 
         } else {
             this.animationFrame = window.requestAnimationFrame(()=>{this.animate()})

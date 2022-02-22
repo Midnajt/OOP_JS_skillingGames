@@ -3,18 +3,8 @@ import { canvas } from './Canvas.js';
 import { loader, DATALOADED_EVENT_NAME } from './Loader.js';
 import { game } from './Game.js';
 import { media } from './Media.js';
-
-const gameLevels = [
-    {
-        level: 1,
-    },
-    {
-        level: 2,
-    },
-    {
-        level: 3,
-    },
-]
+import { gameLevels } from './gameLevels.js';
+import { userData } from './UserData.js';
 
 const LEVEL_SELECT_BUTTON_ID = 'level-select__button';
 const LEVEL_SELECT_ID = 'js-level-select-screen';
@@ -22,10 +12,20 @@ const LEVEL_SELECT_ID = 'js-level-select-screen';
 class LevelSelect extends Common {
     constructor(){
         super(LEVEL_SELECT_ID);
-        gameLevels.forEach(gameLevel => this.createButton(gameLevel.level))
+    }
+
+    createButtons(){
+        while(this.element.firstChild){
+            this.element.removeChild(this.element.firstChild);
+        }
+
+        gameLevels.some(gameLevel => this.createButton(gameLevel.level));
     }
 
     createButton(value){
+        if(!userData.checkAvailabilityLevel(value)){
+            return true;
+        }
         const button = document.createElement('button');
 
         button.type = 'button';
