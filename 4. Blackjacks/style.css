@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap');
+
+:root {
+    --green: #0d6046;
+    --black: #373737;
+    --white: #f5f5f5;
+    --red: #E50914;
+}
+
+body {
+	font-family: 'Bitter','Arial', serif;
+    background-color: var(--white);
+}
+
+h1 {
+	text-align: center;
+	font-weight: 800;
+}
+
+h2 {
+	font-size: 1.2em;
+	display: block;
+	width: 100%;
+	color: var(--white);
+	border-bottom: 3px var(--white) solid;
+	padding-bottom: 5px;
+}
+
+#points {
+	text-align: center;
+	border-top: 3px var(--black) solid;
+	border-bottom: 3px var(--black) solid;
+	padding: 10px 0px;
+}
+
+#points div {
+	padding-top: 5px;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+#blackJack {
+	min-width: 400px;
+    max-width: 800px;
+	margin: 20px auto;
+	position: relative;
+}
+
+#table {
+	background-color: var(--green);
+	padding: 50px;
+	border-radius: 25px;
+	border: 3px var(--black) solid;
+	margin: 50px 0px;
+}
+
+#playersCards,
+#dealersCards {
+	display: flex;
+	margin-bottom: 30px;
+	min-height: 110px;
+}
+
+.card {
+	background: white;
+	width: 50px;
+	padding: 40px 20px;
+	font-weight: bold;
+	margin-right: 20px;
+	box-shadow: 0.2em 0.2em 0.5em #333;
+}
+
+.hearts,
+.diamonds {
+	color: var(--red);
+}
+
+.spades,
+.clubs {
+	color: #000;
+}
+
+#message {
+	display: none;
+	z-index: 1; /* było 999*/
+	position: absolute;
+	top: 300px;
+	width: 100%;
+	padding: 50px 100px;
+	background-color: rgba(255, 255, 255, 0.95);
+	font-size: 3em;
+	font-weight: bold;
+	text-align: center;
+	-webkit-box-shadow: -1px 14px 73px -22px rgba(0, 0, 0, 0.56);
+	-moz-box-shadow: -1px 14px 73px -22px rgba(0, 0, 0, 0.56);
+	box-shadow: -1px 14px 73px -22px rgba(0, 0, 0, 0.56);
+}
+
+#buttons {
+	padding-top: 50px;
+	text-align: center;
+}
+#buttons button {
+	padding: 10px 30px;
+	border-radius: 30px;
+	background: var(--black);
+	color: var(--white);
+	margin: 0 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
