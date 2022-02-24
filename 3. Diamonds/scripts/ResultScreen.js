@@ -2,6 +2,8 @@ import { Common, VISIBLE_SCREEN, HIDDEN_SCREEN } from './Common.js';
 import { canvas } from './Canvas.js';
 import { mainMenu } from './MainMenu.js';
 import { userData } from './UserData.js';
+import { levelSelect } from './LevelSelect.js';
+import { game } from './Game.js';
 
 const RESULT_SCREEN_BACK_BUTTON_ID = 'js-back-to-levels';
 const RESULT_SCREEN_END_SCREEN_ID = 'js-end-screen';
@@ -27,9 +29,7 @@ class ResultScreen extends Common {
 
         backButtonElement.addEventListener('click', () => this.backButtonClick())
 
-        restartButtonElement.addEventListener('click', () => {
-            console.log('restart click');
-        })
+        restartButtonElement.addEventListener('click', () => this.resetartLevelClick())
     }
 
     viewResultScreen(isGameWin, playerPoints, level){
@@ -49,6 +49,11 @@ class ResultScreen extends Common {
         this.changeVisibilityScreen(canvas.element, HIDDEN_SCREEN);
         this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
         mainMenu.showLevelScreen();
+    }
+
+    resetartLevelClick(){
+        this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
+        levelSelect.loadLevel(game.gameState.level)
     }
 }
 

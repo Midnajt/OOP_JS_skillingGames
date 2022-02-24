@@ -162,11 +162,11 @@ body {
     background-image: url('./images/button-exit-hover.png');
 }
 
-.end-screen__button-is-restart {
+.end-screen__button--is-restart {
     background-image: url('./images/button-restart.png');
 }
 
-.end-screen__button-is-restart:hover {
+.end-screen__button--is-restart:hover {
     background-image: url('./images/button-restart-hover.png');
 }
 
