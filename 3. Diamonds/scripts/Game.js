@@ -13,6 +13,7 @@ import { mouseController } from './MouseController.js';
 import { DIAMOND_SIZE, NUMBER_OF_DIAMONDS_TYPES } from './Diamond.js';
 import { resultScreen } from './ResultScreen.js';
 import { userData } from './UserData.js';
+import { mainMenu } from './MainMenu.js';
 
 export const DIAMONDS_ARRAY_WIDTH = 8;
 
@@ -32,6 +33,7 @@ class Game extends Common {
         window.removeEventListener(DATALOADED_EVENT_NAME, this.playLevel)
         this.gameState = new GameState(level, numberOfMovements, pointsToWin, board, media.diamondsSprite);
         this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
+		this.changeVisibilityScreen(mainMenu.miniSettingsLayerElement, VISIBLE_SCREEN);
 		media.isInLevel = true;
 		media.playBackgroundMusic();
         this.animate();
