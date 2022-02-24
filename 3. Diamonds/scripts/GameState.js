@@ -1,4 +1,5 @@
 import { Diamond } from './Diamond.js';
+import { DIAMO_ARRAY_WIDTH } from './Game.js';
 
 export class GameState {
     constructor(level, leftMovement, pointsToWin, diamonds, diamondsSpriteImage){
@@ -33,6 +34,22 @@ export class GameState {
     }
 
     mixDiamonds(){
-        console.log('do it');
+        const mixedDiamonds = _gameBoard.splice(0, DIAMO_ARRAY_WIDTH);
+        let index = DIAMO_ARRAY_WIDTH;
+
+        while(_gameBoard.length){
+            const randomNumber = Math.floor(Math.random() * _gameBoard.length);
+            const nextElementToMix = _gameBoard.splice(randomNumber, 1)[0];
+            const element = {
+                ...nextElementToMix,
+                row: index % DIAMO_ARRAY_WIDTH,
+                column: Math.floor(index / DIAMO_ARRAY_WIDTH),
+            }
+
+            index++;
+            mixedDiamonds.push(element);
+        }
+
+        _gameBoard.push(...mixedDiamonds);
     }
 }

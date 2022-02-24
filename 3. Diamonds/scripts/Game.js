@@ -14,7 +14,8 @@ import { DIAMOND_SIZE, NUMBER_OF_DIAMONDS_TYPES } from './Diamond.js';
 import { resultScreen } from './ResultScreen.js';
 import { userData } from './UserData.js';
 
-const DIAMONDS_ARRAY_WIDTH = 8;
+export const DIAMONDS_ARRAY_WIDTH = 8;
+
 const DIAMONDS_ARRAY_HEIGHT = DIAMONDS_ARRAY_WIDTH + 1; //invisibile first row at the top
 const LAST_ELEMENT_DIAMONDS_ARRAY = DIAMONDS_ARRAY_WIDTH * DIAMONDS_ARRAY_HEIGHT - 1;
 const SWAPING_SPEED = 8;
