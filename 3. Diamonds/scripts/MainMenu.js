@@ -1,6 +1,7 @@
 import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.js';
 import { levelSelect } from './LevelSelect.js';
 import { CANVAS_WIDTH, CANVAS_HEIGHT } from './Canvas.js';
+import { settings } from './Settings.js';
 
 const START_SCREEN_GAME_BUTTON_ID = 'js-start-game';
 const START_SCREEN_ID = 'js-start-screen';
@@ -31,7 +32,7 @@ class MainMenu extends Common {
     }
 
     showSettingsScreen(){
-        console.log('showSettingsScreen()');
+        this.changeVisibilityScreen(settings.element, VISIBLE_SCREEN);
     }
 
     resizeGameWindow(){
