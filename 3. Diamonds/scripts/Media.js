@@ -17,7 +17,9 @@ class Media {
             this.musicVolume = 1;
         }
 
-        this._backgroundMusic.volume = this.musicVolume;
+        if(this._backgroundMusic){
+            this._backgroundMusic.volume = this.musicVolume;
+        }
     }
 
     decreaseMusicVolume(){
@@ -35,7 +37,9 @@ class Media {
             this.soundVolume = 1;
         }
 
-        this._swapSound.volume = this.soundVolume;
+        if(this._swapSound){
+            this._swapSound.volume = this.soundVolume;
+        }
     }
 
     decreaseSoundVolume(){
@@ -48,7 +52,7 @@ class Media {
     }
 
     playBackgroundMusic(){
-        if(!this.allowedMusic) {
+        if(!this.allowedMusic || !this._backgroundImage) {
             return;
         }
 
@@ -57,7 +61,9 @@ class Media {
     }
 
     stopBackgroundMusic(){
-        this._backgroundMusic.pause();
+        if(this._backgroundMusic){
+            this._backgroundMusic.pause();
+        }
     }
 
     playSwapSound(){
@@ -115,6 +121,15 @@ class Media {
         } else {
             this.allowedMusic = true;
             this.playBackgroundMusic();
+        }
+    }
+
+    toggleSoundOnOff(){
+        if(this.allowedSound){
+            this.allowedSound = false;
+            this.stopBackgroundMusic();
+        } else {
+            this.allowedSound = true;
         }
     }
 }
