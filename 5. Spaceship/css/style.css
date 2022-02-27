@@ -92,19 +92,16 @@
 }
 
 .enemy {
-    /* position: absolute; */
-    top: 0;
-    bottom: 0;
+    position: fixed;
     width: var(--size-unit);
     height: var(--size-unit);
     background-image: url('../images/enemy.png');
     animation: move-5-units-x var(--ships-animation-time) steps(5) infinite;
+    z-index: 1;
 }
 
 .enemy--big {
-    /* position: absolute; */
-    top: 0;
-    bottom: 0;
+    position: fixed;
     width: calc(var(--size-unit) * 2);
     height: calc(var(--size-unit) * 2);
     background-image: url('../images/enemy-big.png');
@@ -112,10 +109,7 @@
 }
 
 .explosion {
-    /* position: absolute; */
-    top: 0;
-    left: 200px;
-    bottom: 0;
+    position: fixed;
     width: var(--size-unit);
     height: var(--size-unit);
     background-image: url('../images/explosion.png');
@@ -123,10 +117,7 @@
 }
 
 .explosion--big {
-    /* position: absolute; */
-    top: 0;
-    left: 200px;
-    bottom: 0;
+    position: fixed;
     width: calc(var(--size-unit) * 2);
     height: calc(var(--size-unit) * 2);
     background-image: url('../images/explosion-big.png');
