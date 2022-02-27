@@ -4,6 +4,7 @@
     --black: #252525;
     --white: #f5f5f5;
     --red: #E50914;
+    --red-hit: #510303;
     --praimrt-blue: #09fcfd;
     --green: #008000;
     --orange: #FF8B00;
@@ -179,4 +180,8 @@
 
 .hide {
     display: none;
+}
+
+.hit {
+    background-color: var(--red-hit);
 }

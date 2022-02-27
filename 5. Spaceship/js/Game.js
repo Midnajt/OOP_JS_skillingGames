@@ -5,9 +5,13 @@ class Game {
     #htmlElements = {
         spaceship : document.querySelector('[data-spaceship]'),
         container : document.querySelector('[data-container]'),
+        score : document.querySelector('[data-score]'),
+        lives : document.querySelector('[data-lives]'),
     }
     #ship = new Spaceship(this.#htmlElements.spaceship, this.#htmlElements.container);
     #enemies = [];
+    #lives = null;
+    #score = null;
     #enemiesInterval = null;
     #checkPositionInterval = null;
     #createEnemyInterval = null;
@@ -19,6 +23,8 @@ class Game {
 
     #newGame(){
         this.#enemiesInterval = 30;
+        this.#lives = 3;
+        this.#score = 0;
         this.#createEnemyInterval = setInterval(() => { this.#randomNewEnemy() }, 1000);
         this.#checkPositionInterval = setInterval(() => {this.#checkPosition()}, 1);
     }
@@ -58,6 +64,7 @@ class Game {
           if (enemyPosition.top > window.innerHeight) {
             enemy.explode();
             enemiesArr.splice(enemyIndex, 1);
+            this.#updateLives();
           }
           this.#ship.missiles.forEach((missile, missileIndex, missileArr) => {
             const missilePosition = {
@@ -79,6 +86,7 @@ class Game {
             }
               missile.remove();
               missileArr.splice(missileIndex, 1);
+              this.#updateScore();
             }
             if (missilePosition.bottom < 0) {
               missile.remove();
@@ -87,6 +95,29 @@ class Game {
           });
         });
       }
+
+    #updateLives(){
+        this.#lives--;
+        this.#updateLivesText();
+        this.#htmlElements.container.classList.add('hit');
+        setTimeout(() => {
+            this.#htmlElements.container.classList.remove('hit');
+        }, 100);
+    }
+
+    #updateLivesText(){
+        this.#htmlElements.lives.textContent = `Score: ${this.#lives}`;
+    }
+
+    #updateScore(){
+        this.#score++;
+        this.#enemiesInterval--;
+        this.#updateScoreText();
+    }
+
+    #updateScoreText(){
+        this.#htmlElements.score.textContent = `Score: ${this.#score}`;
+    }
 }
 
 window.onload = () => {
