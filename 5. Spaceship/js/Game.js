@@ -7,6 +7,9 @@ class Game {
         container : document.querySelector('[data-container]'),
         score : document.querySelector('[data-score]'),
         lives : document.querySelector('[data-lives]'),
+        modal : document.querySelector('[data-modal]'),
+        scoreInfo : document.querySelector('[data-score-info]'),
+        button : document.querySelector('[data-button]'),
     }
     #ship = new Spaceship(this.#htmlElements.spaceship, this.#htmlElements.container);
     #enemies = [];
@@ -19,14 +22,31 @@ class Game {
     init(){
         this.#ship.init();
         this.#newGame();
+        this.#htmlElements.button.addEventListener('click', ()=> {this.#newGame()})
     }
 
     #newGame(){
+        this.#htmlElements.modal.classList.add('hide');
         this.#enemiesInterval = 30;
         this.#lives = 3;
         this.#score = 0;
+        this.#updateLivesText();
+        this.#updateScoreText();
+        this.#ship.element.style.left = '0px';
+        this.#ship.setPosition();
         this.#createEnemyInterval = setInterval(() => { this.#randomNewEnemy() }, 1000);
         this.#checkPositionInterval = setInterval(() => {this.#checkPosition()}, 1);
+    }
+
+    #endGame(){
+        this.#htmlElements.modal.classList.remove('hide');
+        this.#htmlElements.scoreInfo.textContent = `You loose! Your score is ${this.#score}`;
+        this.#enemies.forEach((enemy)=>{
+            enemy.explode();
+        })
+        this.#enemies.length = 0;
+        clearInterval(this.#createEnemyInterval);
+        clearInterval(this.#checkPositionInterval);
     }
 
     #randomNewEnemy(){
@@ -103,6 +123,10 @@ class Game {
         setTimeout(() => {
             this.#htmlElements.container.classList.remove('hit');
         }, 100);
+
+        if(!this.#lives){
+            this.#endGame();
+        }
     }
 
     #updateLivesText(){
