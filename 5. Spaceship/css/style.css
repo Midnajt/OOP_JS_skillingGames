@@ -1,6 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,700&display=swap');
+
 :root {
     --black: #252525;
     --white: #f5f5f5;
     --red: #E50914;
-    --blue: #3F5EF9;
+    --praimrt-blue: #09fcfd;
+    --green: #008000;
+    --orange: #FF8B00;
+
+    --size-unit: 64px;
+    --ships-animation-time: 200ms;
+    --explosion-animation-time: 600ms;
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', 'arial', sans-serif;
+    outline: none;
+    user-select: none;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--black);
+}
+
+.information {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    font-size: 2rem;
+    color: var(--white);
+    z-index: 2;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: var(--red);
+    background-color: var(--black);
+    z-index: 3;
+}
+
+.modal__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__text {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.modal__button {
+    margin-top: 1rem;
+    padding: 2rem 1rem;
+    background-color: transparent;
+    border: 3px solid var(--praimrt-blue);
+    box-shadow: 0 0 5px var(--praimrt-blue), inset 0 0 5px var(--praimrt-blue);
+    color: var(--praimrt-blue);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.modal__button:hover {
+    box-shadow: 0 0 20px 5px var(--praimrt-blue);
+}
+
+.spaceship {
+    /* position: absolute; */
+    bottom: 0;
+    width: var(--size-unit);
+    height: var(--size-unit);
+    background-image: url('../images/ship.png');
+    animation: move-8-units-x var(--ships-animation-time) steps(8) infinite;
+}
+
+.enemy {
+    /* position: absolute; */
+    top: 0;
+    bottom: 0;
+    width: var(--size-unit);
+    height: var(--size-unit);
+    background-image: url('../images/enemy.png');
+    animation: move-5-units-x var(--ships-animation-time) steps(5) infinite;
+}
+
+.enemy--big {
+    /* position: absolute; */
+    top: 0;
+    bottom: 0;
+    width: calc(var(--size-unit) * 2);
+    height: calc(var(--size-unit) * 2);
+    background-image: url('../images/enemy-big.png');
+    animation: move-16-units-x var(--ships-animation-time) steps(8) infinite;
+}
+
+.explosion {
+    /* position: absolute; */
+    top: 0;
+    left: 200px;
+    bottom: 0;
+    width: var(--size-unit);
+    height: var(--size-unit);
+    background-image: url('../images/explosion.png');
+    animation: move-17-units-x var(--explosion-animation-time) steps(17) infinite;
+}
+
+.explosion--big {
+    /* position: absolute; */
+    top: 0;
+    left: 200px;
+    bottom: 0;
+    width: calc(var(--size-unit) * 2);
+    height: calc(var(--size-unit) * 2);
+    background-image: url('../images/explosion-big.png');
+    animation: move-34-units-x var(--explosion-animation-time) steps(17) infinite;
+}
+
+.missle {
+    width: 12px;
+    height: 24px;
+    background-image: url('../images/missile.png');
+    background-size: cover;
+}
+
+@keyframes move-8-units-x {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: calc(var(--size-unit) * -8);
+    }
+}
+
+@keyframes move-5-units-x {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: calc(var(--size-unit) * -5);
+    }
+}
+
+@keyframes move-16-units-x {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: calc(var(--size-unit) * -16);
+    }
+}
+
+@keyframes move-17-units-x {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: calc(var(--size-unit) * -17);
+    }
+}
+
+@keyframes move-34-units-x {
+    from {
+        background-position-x: 0px;
+    }
+    to {
+        background-position-x: calc(var(--size-unit) * -34);
+    }
+}
+
+.hide {
+    display: none;
 }
