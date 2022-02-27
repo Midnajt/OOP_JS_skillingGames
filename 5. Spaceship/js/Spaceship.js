@@ -1,10 +1,14 @@
+import { Missile } from "./Missile.js";
+
 export class Spaceship {
+    missiles = [];
     #modifier = 5;
     #leftArrow = false;
     #rightArrow = false;
 
-    constructor(element){
+    constructor(element, container){
         this.element = element;
+        this.container = container;
     }
 
     init(){
@@ -27,25 +31,28 @@ export class Spaceship {
 
     #eventListeners(){
         window.addEventListener('keydown', (event)=>{
-            const keycode = event.key;
+            const keycode = event.keyCode;
             switch(keycode){
-                case 'ArrowLeft':
+                case 37:
                     this.#leftArrow = true;
                     break;
-                case 'ArrowRight':
+                case 39:
                     this.#rightArrow = true;
                     break;
             }
         })
 
         window.addEventListener('keyup', (event)=>{
-            const keycode = event.key;
+            const keycode = event.keyCode;
             switch(keycode){
-                case 'ArrowLeft':
+                case 37:
                     this.#leftArrow = false;
                     break;
-                case 'ArrowRight':
+                case 39:
                     this.#rightArrow = false;
+                    break;
+                case 32:
+                    this.#shot();
                     break;
             }
         })
@@ -71,4 +78,14 @@ export class Spaceship {
             }px`;
         }
     }
+
+    #shot() {
+        const missile = new Missile(
+          this.#getPosition(),
+          this.element.offsetTop,
+          this.container,
+        );
+        missile.init();
+        this.missiles.push(missile);
+      }
 }
