@@ -25,17 +25,17 @@ export class Sprite {
 
         const startPointToDrowX = (numberOfSprites * this.width) + this.spritesStartX;
 
-        canvas.context.drawImage(
-            this.spritesImage,
-            startPointToDrowX,
-            this.spritesStartY,
-            this.width,
-            this.height,
-            this.x + this.offset.x,
-            this.y + this.offset.y,
-            this.width * ratio,
-            this.height * ratio
-        );
+		canvas.context.drawImage(
+			this.spritesImage,
+			startPointToDrowX,
+			this.spritesStartY,
+			this.width,
+			this.height,
+			this.x + this.offset.x,
+			this.y + this.offset.y,
+			this.width * ratio,
+			this.height * ratio
+		);
 
         if(this.alpha !== 255){
             canvas.context.globalAlpha = 1;
