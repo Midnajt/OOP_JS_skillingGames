@@ -1,7 +1,7 @@
 class Media {
 	constructor() {
-		this._spriteImage = null;
-		this.musicVolume = 0.3;
+		this._spritesImage = null;
+		this.musicVolume = 0.0;
 		this.soundVolume = 0.5;
 		this.allowedMusic = true;
 		this.allowedSound = true;
@@ -95,16 +95,16 @@ class Media {
 		return !!this._backgroundMusic;
 	}
 
-	set spriteImage(imageObject) {
+	set spritesImage(imageObject) {
 		if (!imageObject instanceof Image) {
 			return;
 		}
 
-		this._spriteImage = imageObject;
+		this._spritesImage = imageObject;
 	}
 
-	get spriteImage() {
-		return this._spriteImage;
+	get spritesImage() {
+		return this._spritesImage;
 	}
 
 	set diamondsSprite(imageObject) {

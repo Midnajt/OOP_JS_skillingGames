@@ -1,12 +1,14 @@
 import { canvas } from './Canvas.js';
 
 export class Sprite {
-    constructor(x,y, width, height, spriteImages, numberOfSprites = 1, offset = {x: 0, y: 0}){
+    constructor(spriteX,spriteY, width, height, spritesImage, x, y, numberOfSprites = 1, offset = {x: 0, y: 0}){
         this.alpha = 255;
         this.height = height;
         this.numberOfSprites = numberOfSprites;
         this.offset = {...offset};
-        this.spriteImages = spriteImages;
+        this.spritesImage = spritesImage;
+        this.spritesStartX = spriteX;
+        this.spritesStartY = spriteY;
         this.width = width;
         this.x = x;
         this.y = y;
@@ -21,10 +23,12 @@ export class Sprite {
             canvas.context.globalAlpha = this.alpha / 255;
         }
 
+        const startPointToDrowX = (numberOfSprites * this.width) + this.spritesStartX;
+
         canvas.context.drawImage(
-            this.spriteImages,
-            numberOfSprites * this.width,
-            0,
+            this.spritesImage,
+            startPointToDrowX,
+            this.spritesStartY,
             this.width,
             this.height,
             this.x + this.offset.x,

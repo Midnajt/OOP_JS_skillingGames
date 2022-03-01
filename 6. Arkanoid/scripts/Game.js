@@ -6,6 +6,7 @@ import { media } from './Media.js';
 import { resultScreen } from './ResultScreen.js';
 import { userData } from './UserData.js';
 import { mainMenu } from './MainMenu.js';
+import { Sprite } from './Sprite.js';
 
 class Game extends Common {
     constructor(){
@@ -14,6 +15,8 @@ class Game extends Common {
 
     playLevel(level){
         window.removeEventListener(DATALOADED_EVENT_NAME, this.playLevel)
+
+		this.background = new Sprite(0, 33, 800, 450, media.spritesImage, 0, 0);
         // this.gameState = new GameState();
         this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
 		this.changeVisibilityScreen(mainMenu.miniSettingsLayerElement, VISIBLE_SCREEN);
@@ -23,8 +26,14 @@ class Game extends Common {
     }
 
     animate(){
-        this.checkEndOfGame();
+		this.drawSprites();
+        // this.checkEndOfGame();
     }
+
+	drawSprites(){
+		// debugger;
+		this.background.draw(0,1.25);
+	}
 
     checkEndOfGame(){
         if(!this.gameState.getLeftMovement() && !this.gameState.getIsMoving() && !this.gameState.getIsSwaping()){
