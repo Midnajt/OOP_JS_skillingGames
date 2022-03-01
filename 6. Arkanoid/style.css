@@ -265,6 +265,22 @@ body {
     background-image: url('./images/button-mini-settings-hover.png');
 }
 
+.loading-screen {
+    background-image: url('./images/loading.png');
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(100,100,100,.03);
+    backdrop-filter: blur(2px);
+}
+
+.loading-screen--info {
+    margin-top: 257px;
+    color: rgb(175,228,35);
+    font-size: 16px;
+    text-align: center;
+}
+
 /* always at the bottom (cascade mate!) */
 .hidden {
     display: none;

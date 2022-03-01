@@ -43,7 +43,7 @@ class LevelSelect extends Common {
     }
 
     loadLevel(level){
-        if(media.backgroundImage && media.diamondsSprite && media.backgroundMusic && media.swapSound){
+        if(media.spriteSheet && media.backgroundMusic){
             game.playLevel(level);
             return;
         }
@@ -52,16 +52,8 @@ class LevelSelect extends Common {
             media.diamondsSprite = loader.loadImage('images/diamonds-transparent.png');
         }
 
-        if(!media.backgroundImage){
-            media.backgroundImage = loader.loadImage('images/levelBackground.png');
-        }
-
-        if(!media.swapSound){
-            media.swapSound = loader.loadSound('sounds/stone_rock_or_wood_moved.mp3');
-        }
-
         if(!media.backgroundMusic){
-            media.backgroundMusic = loader.loadSound('sounds/background_indiana_jones.mp3');
+            media.backgroundMusic = loader.loadSound('sounds/background_sound.mp3');
         }
         window.addEventListener(DATALOADED_EVENT_NAME, () => game.playLevel(level));
     }
