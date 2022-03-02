@@ -8,6 +8,7 @@ import { userData } from './UserData.js';
 import { mainMenu } from './MainMenu.js';
 import { Sprite } from './Sprite.js';
 import { Paddle } from './Paddle.js';
+import { Ball } from './Ball.js';
 import { keyboardController, KEY_CODE_LEFT, KEY_CODE_PAUSE, KEY_CODE_RIGHT } from './KeyboardController.js';
 
 const PLAYER_SPEED = 10;
@@ -22,6 +23,7 @@ class Game extends Common {
 
 		this.background = new Sprite(0, 33, 800, 450, media.spritesImage, 0, 0);
 		this.paddle = new Paddle();
+		this.ball = new Ball();
         this.gameState = { isGamePaused:false };
         // this.gameState = new GameState();
 
@@ -33,6 +35,7 @@ class Game extends Common {
     }
 
     animate(){
+		this.ball.moveAndCheckCollision();
 		this.handleKeyboardClick();
 		this.drawSprites();
 		this.checkEndOfGame();
@@ -69,29 +72,15 @@ class Game extends Common {
 
 	drawSprites(){
 		this.background.draw(0,1.25);
+		this.ball.draw();
 		this.paddle.draw();
 	}
 
     checkEndOfGame(){
-        if(false){
+        if(this.ball.hadHitOnBottomEdge()){
             media.isInLevel = false;
 			media.stopBackgroundMusic();
-
-			const isPlayerWinner = this.gameState.isPlayerWinner();
-			const currentLevel = Number(this.gameState.level);
-
-            if(isPlayerWinner && gameLevels[currentLevel]){
-                if(!userData.checkAvailabilityLevel(currentLevel + 1)){
-					userData.addNewLevel(currentLevel +1);
-				}
-            }
-
-			if(userData.getHighScores(currentLevel) < this.gameState.getPlayerPoints()){
-				userData.setHighScore(currentLevel, this.gameState.getPlayerPoints());
-			}
-
-            resultScreen.viewResultScreen(isPlayerWinner, this.gameState.getPlayerPoints(), currentLevel);
-
+            resultScreen.viewResultScreen(true);
         } else {
             this.animationFrame = window.requestAnimationFrame(()=>{this.animate()})
         }

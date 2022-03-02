@@ -3,8 +3,9 @@ import { Sprite } from './Sprite.js';
 import { media } from './Media.js';
 
 const PADDLE_START_SPRITE_X = 129;
-const PADDLE_HEIGHT = 23;
 const PADDLE_WIDTH = 102;
+
+export const PADDLE_HEIGHT = 23;
 
 export class Paddle extends Sprite {
     constructor(){
