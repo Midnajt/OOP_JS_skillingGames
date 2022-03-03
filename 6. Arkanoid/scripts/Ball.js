@@ -35,7 +35,6 @@ export class Ball extends Sprite {
 
     moveAndCheckCollision(){
         this.x += this.dx;
-        // ! TODO check collision
         this.y += this.dy;
 
         if(this.x < 0 || this.x > CANVAS_WIDTH - this.width){
