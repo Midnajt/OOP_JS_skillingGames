@@ -1,6 +1,5 @@
 import { Common, VISIBLE_SCREEN } from './Common.js';
 import { DATALOADED_EVENT_NAME } from './Loader.js';
-import { gameLevels } from './gameLevels.js';
 import { canvas } from './Canvas.js';
 import { media } from './Media.js';
 import { resultScreen } from './ResultScreen.js';
@@ -10,6 +9,7 @@ import { Sprite } from './Sprite.js';
 import { Paddle } from './Paddle.js';
 import { Ball } from './Ball.js';
 import { keyboardController, KEY_CODE_LEFT, KEY_CODE_PAUSE, KEY_CODE_RIGHT } from './KeyboardController.js';
+import { GameState } from './GameState.js';
 
 const PLAYER_SPEED = 10;
 
@@ -24,8 +24,7 @@ class Game extends Common {
 		this.background = new Sprite(0, 33, 800, 450, media.spritesImage, 0, 0);
 		this.paddle = new Paddle();
 		this.ball = new Ball();
-        this.gameState = { isGamePaused:false };
-        // this.gameState = new GameState();
+        this.gameState = new GameState(level);
 
         this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
 		this.changeVisibilityScreen(mainMenu.miniSettingsLayerElement, VISIBLE_SCREEN);
@@ -87,6 +86,7 @@ class Game extends Common {
 
 	drawSprites(){
 		this.background.draw(0,1.25);
+		this.gameState.getGameBoard().forEach(block => block.draw());
 		this.ball.draw();
 		this.paddle.draw();
 	}
@@ -95,7 +95,7 @@ class Game extends Common {
         if(this.ball.hadHitOnBottomEdge()){
             media.isInLevel = false;
 			media.stopBackgroundMusic();
-            resultScreen.viewResultScreen(true);
+            resultScreen.viewResultScreen(false);
         } else {
             this.animationFrame = window.requestAnimationFrame(()=>{this.animate()})
         }
