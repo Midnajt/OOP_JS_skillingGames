@@ -19,7 +19,7 @@ class Game extends Common {
     }
 
     playLevel(level){
-        window.removeEventListener(DATALOADED_EVENT_NAME, this.playLevel)
+        window.removeEventListener(DATALOADED_EVENT_NAME, this.playLevel);
 
 		this.background = new Sprite(0, 33, 800, 450, media.spritesImage, 0, 0);
 		this.paddle = new Paddle();
