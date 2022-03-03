@@ -13,4 +13,8 @@ export class Block extends Sprite {
         super(0,0,BLOCK_WIDTH,BLOCK_HEIGHT, media.spritesImage, positionX, positionY, NUMBER_OF_BLOCK_VARIANTS);
         this.kind = kind;
     }
+
+    draw(){
+        super.draw(this.kind);
+    }
 }

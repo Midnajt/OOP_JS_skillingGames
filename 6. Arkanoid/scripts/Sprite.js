@@ -49,7 +49,7 @@ export class Sprite {
             anotherSprite.x < collisionPointX
             && collisionPointX < anotherSprite.x + anotherSprite.width
             && anotherSprite.y < collisionPointY
-            && collisionPointY < anotherSprite.y + anotherSprite.height
+            && collisionPointY < anotherSprite.y + anotherSprite.width
         ) {
             return true;
         }

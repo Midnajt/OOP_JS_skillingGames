@@ -33,9 +33,28 @@ export class Ball extends Sprite {
         this.dy = -this.dy;
     }
 
-    moveAndCheckCollision(){
-        this.x += this.dx;
-        this.y += this.dy;
+    moveAndCheckCollision(blocks){
+        const {dx,dy} = this;
+        const blocksToRemove = [];
+        const vector = {dx,dy};
+
+        this.x += dx;
+        blocks.forEach((block,index) => {
+            if(this.checkCollisionWithAnotherSprite(vector,block)){
+                blocksToRemove.push(index);
+                this.revertXDirection();
+            }
+        });
+
+        this.y += dy;
+        blocks.forEach((block,index) => {
+            if(this.checkCollisionWithAnotherSprite(vector,block)){
+                if(!blocksToRemove.includes(index)){
+                    blocksToRemove.push(index);
+                }
+                this.revertYDirection();
+            }
+        });
 
         if(this.x < 0 || this.x > CANVAS_WIDTH - this.width){
             this.revertXDirection();
@@ -44,6 +63,14 @@ export class Ball extends Sprite {
         if(this.y < 0){
             this.revertYDirection();
         }
+
+        blocksToRemove.forEach( index => {
+            if(blocks[index].kind){
+                blocks[index].kind--;
+            } else {
+                blocks.splice(index,1)
+            }
+        })
     }
 
     hadHitOnBottomEdge(){
